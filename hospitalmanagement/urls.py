@@ -1,14 +1,3 @@
-"""
-
-Developed By : sumit kumar
-facebook : fb.com/sumit.luv
-Youtube :youtube.com/lazycoders
-
-
-"""
-
-
-
 
 from django.contrib import admin
 from django.urls import path
@@ -27,15 +16,19 @@ urlpatterns = [
 
 
     path('adminclick', views.adminclick_view),
+    path('workerclick', views.workerclick_view),
     path('doctorclick', views.doctorclick_view),
+    path('nurseclick', views.nurseclick_view),
     path('patientclick', views.patientclick_view),
 
     path('adminsignup', views.admin_signup_view),
     path('doctorsignup', views.doctor_signup_view,name='doctorsignup'),
+    path('nursesignup', views.nurse_signup_view,name='nursesignup'),
     path('patientsignup', views.patient_signup_view),
     
     path('adminlogin', LoginView.as_view(template_name='hospital/adminlogin.html')),
     path('doctorlogin', LoginView.as_view(template_name='hospital/doctorlogin.html')),
+    path('nurselogin', LoginView.as_view(template_name='hospital/nurselogin.html')),
     path('patientlogin', LoginView.as_view(template_name='hospital/patientlogin.html')),
 
 
@@ -54,6 +47,17 @@ urlpatterns = [
     path('approve-doctor/<int:pk>', views.approve_doctor_view,name='approve-doctor'),
     path('reject-doctor/<int:pk>', views.reject_doctor_view,name='reject-doctor'),
     path('admin-view-doctor-specialisation',views.admin_view_doctor_specialisation_view,name='admin-view-doctor-specialisation'),
+
+    #Nurse
+    path('admin-nurse', views.admin_nurse_view,name='admin-nurse'),
+    path('admin-view-nurse', views.admin_view_nurse_view,name='admin-view-nurse'),
+    path('delete-nurse-from-hospital/<int:pk>', views.delete_nurse_from_hospital_view,name='delete-nurse-from-hospital'),
+    path('update-nurse/<int:pk>', views.update_nurse_view,name='update-nurse'),
+    path('admin-add-nurse', views.admin_add_nurse_view,name='admin-add-nurse'),
+    path('admin-approve-nurse', views.admin_approve_nurse_view,name='admin-approve-nurse'),
+    path('approve-nurse/<int:pk>', views.approve_nurse_view,name='approve-nurse'),
+    path('reject-nurse/<int:pk>', views.reject_nurse_view,name='reject-nurse'),
+    path('admin-view-nurse-specialisation',views.admin_view_nurse_specialisation_view,name='admin-view-nurse-specialisation'),
 
 
     path('admin-patient', views.admin_patient_view,name='admin-patient'),
@@ -75,6 +79,10 @@ urlpatterns = [
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     path('approve-appointment/<int:pk>', views.approve_appointment_view,name='approve-appointment'),
     path('reject-appointment/<int:pk>', views.reject_appointment_view,name='reject-appointment'),
+
+    path('admin-drugs', views.admin_drugs_view,name='admin-drugs'),
+    path('admin-add-drugs', views.admin_add_drugs_view,name='admin-add-drugs'),
+    path('admin-view-drugs', views.admin_view_drugs_view,name='admin-view-drugs'),
 ]
 
 
@@ -85,12 +93,39 @@ urlpatterns +=[
 
     path('doctor-patient', views.doctor_patient_view,name='doctor-patient'),
     path('doctor-view-patient', views.doctor_view_patient_view,name='doctor-view-patient'),
+    path('doctor-view-patient-all', views.doctor_view_patient_view_all,name='doctor-view-patient-all'),
+    path('doctor-add-patient', views.doctor_add_patient_view,name='doctor-add-patient'),
     path('doctor-view-discharge-patient',views.doctor_view_discharge_patient_view,name='doctor-view-discharge-patient'),
+    
+    path('doctor-view-patient-pallete', views.doctor_view_patient_pallete,name='doctor-view-patient-pallete'),
 
     path('doctor-appointment', views.doctor_appointment_view,name='doctor-appointment'),
     path('doctor-view-appointment', views.doctor_view_appointment_view,name='doctor-view-appointment'),
     path('doctor-delete-appointment',views.doctor_delete_appointment_view,name='doctor-delete-appointment'),
     path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
+    path('assign-doctor/<int:pk>', views.assign_doctor_view,name='assign-doctor'),
+    path('doc-update-patient/<int:pk>', views.doctor_update_patient_view,name='doc-update-patient'),
+
+]
+
+#---------FOR NURSE RELATED URLS-------------------------------------
+urlpatterns +=[
+    path('nurse-dashboard', views.nurse_dashboard_view,name='nurse-dashboard'),
+    path('search_nurse', views.search_view_nurse,name='search_nurse'),
+
+    path('nurse-patient', views.nurse_patient_view,name='nurse-patient'),
+    path('nurse-add-patient', views.nurse_add_patient_view,name='nurse-add-patient'),
+    path('nurse-view-patient', views.nurse_view_patient_view,name='nurse-view-patient'),
+    path('nurse-view-patient-all', views.nurse_view_patient_view_all,name='nurse-view-patient-all'),
+    path('nurse-view-discharge-patient',views.nurse_view_discharge_patient_view,name='nurse-view-discharge-patient'),
+
+    path('nurse-view-patient-pallete', views.nurse_view_patient_pallete,name='nurse-view-patient-pallete'),
+
+    path('nurse-appointment', views.nurse_appointment_view,name='nurse-appointment'),
+    path('nurse-view-appointment', views.nurse_view_appointment_view,name='nurse-view-appointment'),
+    path('nurse-delete-appointment',views.nurse_delete_appointment_view,name='nurse-delete-appointment'),
+    #path('delete-appointment/<int:pk>', views.delete_appointment_view,name='delete-appointment'),
+    path('assign-nurse/<int:pk>', views.assign_nurse_view,name='assign-nurse'),
 ]
 
 
@@ -109,6 +144,3 @@ urlpatterns +=[
 
 ]
 
-#Developed By : sumit kumar
-#facebook : fb.com/sumit.luv
-#Youtube :youtube.com/lazycoders

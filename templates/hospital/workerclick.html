@@ -1,0 +1,37 @@
+{% extends 'hospital/homebase.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+    <div class="jumbotron" style="margin-bottom:0px;">
+        <h1 class="display-4" style="text-align:center;">Hello, Worker</h1>
+        <p class="lead">Welcome to iCare Hospital Management System.</p>
+        <hr class="my-4">
+        <p class="lead">You can access various features after Login/SignUp.</p>
+    </div>
+    
+
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <div class="card">
+        <img src="{% static "images/doctor.png" %}" alt="John" style="width:100%">
+        <p class="title">DOCTOR</p>
+        <p><button><a href="/doctorclick">Login/Signup</a></button></p>
+      </div>
+
+    </div>
+
+    <div class="grid-item">
+      <div class="card">
+        <img src="{% static "images/nurse.png" %}" alt="John" style="width:100%">
+        <p class="title">NURSE</p>
+        <p><button><a href="/nurseclick">Login/Signup</a></button></p>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}
